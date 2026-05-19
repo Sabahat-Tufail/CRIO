@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description"
+    content="CIRO - Crisis Intelligence & Response Orchestrator. Real-time multi-agent disaster management system for urban crisis detection, resource allocation, and coordinated response." />
+  <meta name="keywords" content="crisis management, disaster response, AI agents, signal fusion, resource allocation" />
+  <title>CIRO — Crisis Intelligence & Response Orchestrator</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Leaflet Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./polish.css" />
+  <link rel="stylesheet" href="./mobile.css" />
+</head>
+
+<body>
+  <!-- ==================== LOADING SCREEN ==================== -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <div class="loading-rings">
+          <div class="ring ring-1"></div>
+          <div class="ring ring-2"></div>
+          <div class="ring ring-3"></div>
+          <div class="loading-icon">⚡</div>
+        </div>
+      </div>
+      <h1 class="loading-title">CIRO</h1>
+      <p class="loading-subtitle">Crisis Intelligence & Response Orchestrator</p>
+      <div class="loading-bar">
+        <div class="loading-bar-fill" id="loading-bar-fill"></div>
+      </div>
+      <p class="loading-status" id="loading-status">Initializing agent network...</p>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN APP ==================== -->
+  <div id="app" class="app hidden">
+
+    <!-- ==================== TOP COMMAND BAR ==================== -->
+    <header id="command-bar" class="command-bar">
+      <div class="command-bar-left">
+        <div class="logo">
+          <span class="logo-icon">⚡</span>
+          <span class="logo-text">CIRO</span>
+          <span class="logo-badge">LIVE</span>
+        </div>
+        <div class="system-status" id="system-status">
+          <div class="status-dot status-online"></div>
+          <span>All Systems Operational</span>
+        </div>
+        <div class="mobile-status-bar" style="display:none">
+          <span class="mobile-threat" id="mobile-threat">LOW</span>
+          <span class="mobile-crises-badge" id="mobile-crises-badge">0 Crises</span>
+        </div>
+      </div>
+
+      <div class="command-bar-center">
+        <div class="threat-level" id="threat-level">
+          <span class="threat-label">THREAT LEVEL</span>
+          <span class="threat-value threat-low" id="threat-value">LOW</span>
+        </div>
+        <div class="active-crises-count" id="active-crises-count">
+          <span class="count-number">0</span>
+          <span class="count-label">Active Crises</span>
+        </div>
+        <div class="agents-active" id="agents-active">
+          <span class="count-number">7</span>
+          <span class="count-label">Agents Online</span>
+        </div>
+      </div>
+
+      <div class="command-bar-right">
+        <button class="btn btn-scenario" id="btn-run-scenario" title="Run Scenario">
+          <span class="btn-icon">🎯</span>
+          <span class="btn-text">Run Scenario</span>
+        </button>
+        <button class="btn btn-live-stream" id="btn-live-stream" style="border-color:#10b981; background:rgba(16,185,129,0.1); color:#10b981;" title="Connect Live Streams">
+          <span class="btn-icon">📡</span>
+          <span class="btn-text">Live Streams</span>
+        </button>
+        <button class="btn btn-icon-only" id="btn-notifications" title="Notifications">
+          🔔
+          <span class="notification-badge hidden" id="notification-badge">0</span>
+        </button>
+        <button class="btn btn-icon-only" id="btn-settings" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- ==================== SCENARIO SELECTOR MODAL ==================== -->
+    <div id="scenario-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content scenario-modal-content">
+        <div class="modal-header">
+          <h2>🎯 Scenario Runner</h2>
+          <button class="modal-close" id="scenario-modal-close">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="scenario-grid" id="scenario-grid">
+            <!-- Scenarios injected by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== NOTIFICATION PANEL ==================== -->
+    <div id="notification-panel" class="side-panel hidden">
+      <div class="panel-header">
+        <h3>📋 Notifications & Alerts</h3>
+        <button class="panel-close" id="notification-panel-close">✕</button>
+      </div>
+      <div class="panel-body" id="notification-list">
+        <div class="empty-state">
+          <span class="empty-icon">🔕</span>
+          <p>No notifications yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MAIN DASHBOARD ==================== -->
+    <main class="dashboard" id="dashboard">
+
+      <!-- LEFT PANEL: Signal Feed + Crisis List -->
+      <aside class="panel panel-left" id="panel-left">
+        <div class="panel-tabs">
+          <button class="panel-tab active" data-tab="signals">
+            <span class="tab-icon">📡</span>
+            <span class="tab-text">Signals</span>
+            <span class="tab-count" id="signal-count">0</span>
+          </button>
+          <button class="panel-tab" data-tab="crises">
+            <span class="tab-icon">🚨</span>
+            <span class="tab-text">Crises</span>
+            <span class="tab-count" id="crisis-count">0</span>
+          </button>
+          <button class="panel-tab" data-tab="commander">
+            <span class="tab-icon">🧠</span>
+            <span class="tab-text">Commander</span>
+            <span class="logo-badge" style="margin-left: 4px; padding: 1px 4px; font-size: 8px; animation: pulse 2s infinite;">AI</span>
+          </button>
+        </div>
+
+        <!-- Signal Feed -->
+        <div class="tab-content active" id="tab-signals">
+          <div class="feed-controls">
+            <div class="feed-filter">
+              <button class="filter-chip active" data-filter="all">All</button>
+              <button class="filter-chip" data-filter="social">Social</button>
+              <button class="filter-chip" data-filter="weather">Weather</button>
+              <button class="filter-chip" data-filter="traffic">Traffic</button>
+              <button class="filter-chip" data-filter="emergency">Emergency</button>
+              <button class="filter-chip" data-filter="sensor">Sensor</button>
+              <button class="filter-chip" data-filter="field">Field</button>
+            </div>
+          </div>
+          <div class="feed-list" id="signal-feed">
+            <div class="empty-state">
+              <span class="empty-icon">📡</span>
+              <p>Awaiting signal data...</p>
+              <p class="empty-hint">Run a scenario to begin</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crisis List -->
+        <div class="tab-content" id="tab-crises">
+          <div class="crisis-list" id="crisis-list">
+            <div class="empty-state">
+              <span class="empty-icon">✅</span>
+              <p>No active crises</p>
+              <p class="empty-hint">System monitoring all channels</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Incident Commander -->
+        <div class="tab-content" id="tab-commander">
+          <div class="commander-container" id="commander-container">
+            <div class="commander-header">
+              <div class="commander-status">
+                <span class="status-indicator-dot pulsing"></span>
+                <span class="status-indicator-text">AI ACTIVE ANALYSIS</span>
+              </div>
+              <div class="commander-confidence-box">
+                <span class="commander-conf-val" id="commander-confidence">—</span>
+                <span class="commander-conf-lbl">CONFIDENCE</span>
+              </div>
+            </div>
+            
+            <div class="commander-section scrollable" style="padding-top: 10px;">
+              <div class="commander-block">
+                <h4><span class="block-icon">📝</span> EXECUTIVE SITREP</h4>
+                <p id="commander-summary" class="typing-text">Awaiting operational signals to perform real-time urban disaster assessment...</p>
+              </div>
+
+              <div class="commander-block">
+                <h4><span class="block-icon">📋</span> DIRECTIVE RECOMMENDED ACTIONS</h4>
+                <ul id="commander-actions" class="commander-list">
+                  <li>Standby for signal intelligence processing</li>
+                </ul>
+              </div>
+
+              <div class="commander-block">
+                <h4><span class="block-icon">🔮</span> 30-MIN IMPACT ESCALATION FORECAST</h4>
+                <p id="commander-escalation" class="typing-text">No active threats detected. Risk level: Nominal.</p>
+              </div>
+
+              <div class="commander-block">
+                <h4><span class="block-icon">⏳</span> INFRASTRUCTURE & METRICS FORECAST</h4>
+                <p id="commander-forecast" class="typing-text">System monitoring: Hayatabad, University Town, Saddar, Karkhano, G.T. Road, Charsadda.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER: Map + Charts -->
+      <section class="panel panel-center" id="panel-center">
+        <!-- Map View -->
+        <div class="map-container" id="map-container">
+          <div id="map" class="map"></div>
+          <div class="map-overlay-controls">
+            <div class="map-legend" id="map-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#ff3d57"></span> Critical</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#ffa726"></span> High</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#ffd54f"></span> Medium</div>
+              <div class="legend-item"><span class="legend-dot" style="background:#42a5f5"></span> Low</div>
+              <div class="legend-item"><span class="legend-dot legend-dot-pulse" style="background:#ab47bc"></span>
+                Unverified</div>
+            </div>
+          </div>
+          <!-- Map info overlay for selected crisis -->
+          <div class="map-info-card hidden" id="map-info-card">
+            <div class="map-info-header" id="map-info-header"></div>
+            <div class="map-info-body" id="map-info-body"></div>
+          </div>
+        </div>
+
+        <!-- Bottom Stats Bar -->
+        <div class="stats-bar" id="stats-bar">
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-signals-processed">0</span>
+              <span class="stat-label">Signals Processed</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-confidence-avg">—</span>
+              <span class="stat-label">Avg Confidence</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🚑</div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-resources-deployed">0</span>
+              <span class="stat-label">Resources Deployed</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-response-time">—</span>
+              <span class="stat-label">Avg Response Time</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <div class="stat-info">
+              <span class="stat-value" id="stat-population-affected">0</span>
+              <span class="stat-label">Population Affected</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Resources + Agent Traces -->
+      <aside class="panel panel-right" id="panel-right">
+        <div class="panel-tabs">
+          <button class="panel-tab active" data-tab="resources">
+            <span class="tab-icon">🚑</span>
+            <span class="tab-text">Resources</span>
+          </button>
+          <button class="panel-tab" data-tab="agents">
+            <span class="tab-icon">🤖</span>
+            <span class="tab-text">Agent Traces</span>
+          </button>
+          <button class="panel-tab" data-tab="simulation">
+            <span class="tab-icon">📈</span>
+            <span class="tab-text">Simulation</span>
+          </button>
+        </div>
+
+        <!-- Resources Panel -->
+        <div class="tab-content active" id="tab-resources">
+          <div class="resource-summary" id="resource-summary">
+            <div class="resource-chart-container">
+              <canvas id="resource-chart"></canvas>
+            </div>
+          </div>
+          <div class="resource-list" id="resource-list">
+            <!-- Resource items injected by JS -->
+          </div>
+        </div>
+
+        <!-- Agent Traces Panel -->
+        <div class="tab-content" id="tab-agents">
+          <div class="agent-status-grid" id="agent-status-grid">
+            <!-- Agent status cards injected by JS -->
+          </div>
+          <div class="trace-timeline" id="trace-timeline">
+            <div class="empty-state">
+              <span class="empty-icon">🤖</span>
+              <p>No agent activity yet</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simulation Panel -->
+        <div class="tab-content" id="tab-simulation">
+          <div class="simulation-container" id="simulation-container">
+            <div class="empty-state">
+              <span class="empty-icon">📈</span>
+              <p>No active simulation</p>
+              <p class="empty-hint">Run a scenario to see impact simulation</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- ==================== STAKEHOLDER MESSAGES MODAL ==================== -->
+    <div id="stakeholder-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content stakeholder-modal-content">
+        <div class="modal-header">
+          <h2>📢 Stakeholder Communications</h2>
+          <button class="modal-close" id="stakeholder-modal-close">✕</button>
+        </div>
+        <div class="modal-body" id="stakeholder-messages">
+          <!-- Messages injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== CRISIS DETAIL MODAL ==================== -->
+    <div id="crisis-detail-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content crisis-detail-content">
+        <div class="modal-header">
+          <h2 id="crisis-detail-title">Crisis Detail</h2>
+          <button class="modal-close" id="crisis-detail-close">✕</button>
+        </div>
+        <div class="modal-body" id="crisis-detail-body">
+          <!-- Detail injected by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOAST CONTAINER ==================== -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- ==================== MOBILE BOTTOM NAV ==================== -->
+    <nav class="mobile-nav" id="mobile-nav">
+      <button class="mobile-nav-item active" data-view="map">
+        <span class="nav-icon">🗺️</span>
+        <span class="nav-label">Map</span>
+      </button>
+      <button class="mobile-nav-item" data-view="signals">
+        <span class="nav-icon">📡</span>
+        <span class="nav-label">Signals</span>
+      </button>
+      <button class="mobile-nav-item" data-view="crises">
+        <span class="nav-icon">🚨</span>
+        <span class="nav-label">Crises</span>
+      </button>
+      <button class="mobile-nav-item" data-view="commander">
+        <span class="nav-icon">🧠</span>
+        <span class="nav-label">AI Cmdr</span>
+      </button>
+      <button class="mobile-nav-item" data-view="resources">
+        <span class="nav-icon">🚑</span>
+        <span class="nav-label">Resources</span>
+      </button>
+      <button class="mobile-nav-item" data-view="agents">
+        <span class="nav-icon">🤖</span>
+        <span class="nav-label">Agents</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>

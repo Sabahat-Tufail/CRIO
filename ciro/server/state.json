@@ -1,0 +1,453 @@
+{
+  "signals": [
+    {
+      "id": "NEWS-3bd29903",
+      "type": "social",
+      "icon": "📰",
+      "source": "The Atlantic",
+      "text": "Photos: The Global Cost of the Iran War - The continuing crisis in Iran and the subsequent closure of the Strait of Hormuz have exacted a heavy cost worldwide. In addition to the steep price of military expenditures, destroyed infrastructure, and human lives lost, global shortages of fuel, fertilizer…",
+      "location": "Peshawar",
+      "urgency": "high",
+      "timestamp": "00:14:27",
+      "credibility": 0.9,
+      "geolocationConf": 0.85,
+      "tags": [
+        "news",
+        "breaking"
+      ]
+    },
+    {
+      "id": "NEWS-93453443",
+      "type": "social",
+      "icon": "📰",
+      "source": "Dailymail.com",
+      "text": "County cricket transfer round-up: Kiwi history-maker seeking Blast deal, Kent snap up danger man after injury blow to overseas star and the seamer Derbyshire and Leicestershire are targeting - Australia's white-ball tours of Pakistan and Bangladesh, which run from late May until late June, have left counties mulling over their options.",
+      "location": "Peshawar",
+      "urgency": "high",
+      "timestamp": "00:14:27",
+      "credibility": 0.9,
+      "geolocationConf": 0.85,
+      "tags": [
+        "news",
+        "breaking"
+      ]
+    },
+    {
+      "id": "NEWS-f02219a7",
+      "type": "social",
+      "icon": "📰",
+      "source": "Al Jazeera English",
+      "text": "Global energy crisis highlights meagre oil buffers in developing world - Governments in the Global South are among the least prepared to respond to the oil shock caused by the Iran war.",
+      "location": "Peshawar",
+      "urgency": "high",
+      "timestamp": "00:14:27",
+      "credibility": 0.9,
+      "geolocationConf": 0.85,
+      "tags": [
+        "news",
+        "breaking"
+      ]
+    },
+    {
+      "id": "WEATH-757bf06a",
+      "type": "weather",
+      "icon": "🌧️",
+      "source": "Weather IoT Station",
+      "text": "IoT Station: Peshawar reports Clouds. Temperature: 30°C, Humidity: 51%, Wind: 2.06m/s.",
+      "location": "Peshawar",
+      "urgency": "low",
+      "timestamp": "00:14:27",
+      "credibility": 0.96,
+      "geolocationConf": 0.98,
+      "tags": [
+        "weather",
+        "clouds"
+      ]
+    }
+  ],
+  "crises": [
+    {
+      "id": "CR-0BC3FFBC",
+      "type": "heatwave",
+      "typeInfo": {
+        "icon": "🔥",
+        "label": "Heat Emergency",
+        "color": "#ff7043"
+      },
+      "confidence": 0.13,
+      "severity": "critical",
+      "severityScore": 0.9916666666666667,
+      "location": "Peshawar",
+      "coords": {
+        "lat": 34.0151,
+        "lng": 71.5249
+      },
+      "contradictions": [],
+      "signalCount": 4,
+      "sourceTypes": [
+        "social",
+        "weather"
+      ],
+      "status": "active",
+      "cluster": {
+        "location": "Peshawar",
+        "signals": [
+          {
+            "id": "NEWS-3bd29903",
+            "type": "social",
+            "icon": "📰",
+            "source": "The Atlantic",
+            "text": "Photos: The Global Cost of the Iran War - The continuing crisis in Iran and the subsequent closure of the Strait of Hormuz have exacted a heavy cost worldwide. In addition to the steep price of military expenditures, destroyed infrastructure, and human lives lost, global shortages of fuel, fertilizer…",
+            "location": "Peshawar",
+            "urgency": "high",
+            "timestamp": "00:14:27",
+            "credibility": 0.9,
+            "geolocationConf": 0.85,
+            "tags": [
+              "news",
+              "breaking"
+            ]
+          },
+          {
+            "id": "NEWS-93453443",
+            "type": "social",
+            "icon": "📰",
+            "source": "Dailymail.com",
+            "text": "County cricket transfer round-up: Kiwi history-maker seeking Blast deal, Kent snap up danger man after injury blow to overseas star and the seamer Derbyshire and Leicestershire are targeting - Australia's white-ball tours of Pakistan and Bangladesh, which run from late May until late June, have left counties mulling over their options.",
+            "location": "Peshawar",
+            "urgency": "high",
+            "timestamp": "00:14:27",
+            "credibility": 0.9,
+            "geolocationConf": 0.85,
+            "tags": [
+              "news",
+              "breaking"
+            ]
+          },
+          {
+            "id": "NEWS-f02219a7",
+            "type": "social",
+            "icon": "📰",
+            "source": "Al Jazeera English",
+            "text": "Global energy crisis highlights meagre oil buffers in developing world - Governments in the Global South are among the least prepared to respond to the oil shock caused by the Iran war.",
+            "location": "Peshawar",
+            "urgency": "high",
+            "timestamp": "00:14:27",
+            "credibility": 0.9,
+            "geolocationConf": 0.85,
+            "tags": [
+              "news",
+              "breaking"
+            ]
+          },
+          {
+            "id": "WEATH-757bf06a",
+            "type": "weather",
+            "icon": "🌧️",
+            "source": "Weather IoT Station",
+            "text": "IoT Station: Peshawar reports Clouds. Temperature: 30°C, Humidity: 51%, Wind: 2.06m/s.",
+            "location": "Peshawar",
+            "urgency": "low",
+            "timestamp": "00:14:27",
+            "credibility": 0.96,
+            "geolocationConf": 0.98,
+            "tags": [
+              "weather",
+              "clouds"
+            ]
+          }
+        ],
+        "sourceTypes": [
+          "social",
+          "weather"
+        ],
+        "avgCredibility": 0.915,
+        "avgUrgency": 2.5,
+        "sourceDiversity": 0.3333333333333333,
+        "contradictions": [],
+        "confidence": 0.65,
+        "signalCount": 4
+      },
+      "prediction": {
+        "affectedRadius": 3,
+        "affectedPopulation": 30000,
+        "estimatedDuration": "9 hours",
+        "peakImpactTime": "3 hours",
+        "spreadRisk": "HIGH",
+        "uncertaintyRange": "±26%"
+      }
+    }
+  ],
+  "allocations": [
+    {
+      "crisisId": "CR-0BC3FFBC",
+      "location": "Peshawar",
+      "resources": {
+        "ambulances": 6,
+        "fieldTeams": 8,
+        "waterTankers": 5,
+        "shelters": 3,
+        "generators": 5
+      },
+      "tradeoffs": []
+    }
+  ],
+  "simulations": [
+    {
+      "crisisId": "CR-0BC3FFBC",
+      "location": "Peshawar",
+      "actions": [
+        {
+          "action": "Emergency Dispatch",
+          "icon": "🚨",
+          "before": {
+            "desc": "No resources on-site",
+            "metric": "N/A"
+          },
+          "after": {
+            "desc": "Teams deployed",
+            "metric": "ETA: 11 min"
+          },
+          "improvement": "Full coverage",
+          "cost": "27 units",
+          "sideEffects": [
+            "Reduced reserves"
+          ]
+        },
+        {
+          "action": "Public Alert",
+          "icon": "📢",
+          "before": {
+            "desc": "Public unaware",
+            "metric": "Info gap: HIGH"
+          },
+          "after": {
+            "desc": "Alert broadcast",
+            "metric": "Coverage: ~85%"
+          },
+          "improvement": "Informed population",
+          "cost": "SMS costs",
+          "sideEffects": [
+            "Increased helpline calls"
+          ]
+        }
+      ]
+    }
+  ],
+  "stakeholderMessages": [
+    {
+      "recipient": "Public",
+      "icon": "📱",
+      "priority": "URGENT",
+      "priorityColor": "#ff3d57",
+      "body": "⚠️ CRITICAL: Heat Emergency in Peshawar. Avoid area. Emergency: 1122."
+    },
+    {
+      "recipient": "Emergency Services",
+      "icon": "🚒",
+      "priority": "CRITICAL",
+      "priorityColor": "#ff3d57",
+      "body": "DISPATCH — Heat Emergency at Peshawar. Severity: CRITICAL."
+    },
+    {
+      "recipient": "Hospitals",
+      "icon": "🏥",
+      "priority": "HIGH",
+      "priorityColor": "#ffa726",
+      "body": "ADVISORY — Prepare for Heat Emergency casualties from Peshawar."
+    },
+    {
+      "recipient": "Utilities",
+      "icon": "🔌",
+      "priority": "HIGH",
+      "priorityColor": "#ffa726",
+      "body": "ALERT — Check infrastructure impact at Peshawar."
+    },
+    {
+      "recipient": "Transport",
+      "icon": "🚌",
+      "priority": "MEDIUM",
+      "priorityColor": "#ffd54f",
+      "body": "Reroute traffic around Peshawar."
+    },
+    {
+      "recipient": "Media",
+      "icon": "📺",
+      "priority": "INFO",
+      "priorityColor": "#42a5f5",
+      "body": "SITREP — Heat Emergency at Peshawar. Confidence: 13%."
+    }
+  ],
+  "verifications": [
+    {
+      "crisisId": "CR-0BC3FFBC",
+      "action": "confirm",
+      "details": ""
+    }
+  ],
+  "agentTraces": [
+    {
+      "id": 1,
+      "agent": "fusion",
+      "type": "trace-fusion",
+      "message": "Ingesting 4 signals...",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 2,
+      "agent": "fusion",
+      "type": "trace-fusion",
+      "message": "Cluster [Peshawar]: 4 signals, 2 sources, cred=0.92",
+      "confidence": 0.6540833333333333,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 3,
+      "agent": "fusion",
+      "type": "trace-fusion",
+      "message": "Fusion: 1 cluster(s).",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 4,
+      "agent": "classifier",
+      "type": "trace-classify",
+      "message": "Classifying Peshawar...",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 5,
+      "agent": "classifier",
+      "type": "trace-classify",
+      "message": "✅ 🔥 Heat Emergency at Peshawar | CRITICAL | 13%",
+      "confidence": 0.13,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 6,
+      "agent": "predictor",
+      "type": "trace-predict",
+      "message": "📊 Peshawar: Radius=3km, Pop=30,000",
+      "confidence": 0.13,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 7,
+      "agent": "allocator",
+      "type": "trace-allocate",
+      "message": "Allocating for 1 crises...",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 8,
+      "agent": "allocator",
+      "type": "trace-allocate",
+      "message": "📦 Peshawar: 6 Ambulances, 8 Field Teams, 5 Water Tankers, 3 Shelters, 5 Generators",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 9,
+      "agent": "simulator",
+      "type": "trace-simulate",
+      "message": "🧪 Peshawar: 2 actions modeled.",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 10,
+      "agent": "notifier",
+      "type": "trace-notify",
+      "message": "📢 Peshawar: 6 notifications generated.",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    },
+    {
+      "id": 11,
+      "agent": "verifier",
+      "type": "trace-verify",
+      "message": "✅ Peshawar: Confirmed.",
+      "confidence": null,
+      "timestamp": "00:14:28"
+    }
+  ],
+  "threatLevel": "CRITICAL",
+  "resources": {
+    "ambulances": {
+      "icon": "🚑",
+      "total": 24,
+      "available": 18,
+      "label": "Ambulances",
+      "color": "#ff3d57"
+    },
+    "police": {
+      "icon": "🚔",
+      "total": 40,
+      "available": 40,
+      "label": "Police Units",
+      "color": "#42a5f5"
+    },
+    "rescue": {
+      "icon": "🚒",
+      "total": 16,
+      "available": 16,
+      "label": "Rescue Teams",
+      "color": "#ffa726"
+    },
+    "shelters": {
+      "icon": "🏠",
+      "total": 8,
+      "available": 5,
+      "label": "Shelters",
+      "color": "#4caf50"
+    },
+    "generators": {
+      "icon": "⚡",
+      "total": 20,
+      "available": 15,
+      "label": "Generators",
+      "color": "#ffd54f"
+    },
+    "waterTankers": {
+      "icon": "💧",
+      "total": 12,
+      "available": 7,
+      "label": "Water Tankers",
+      "color": "#26c6da"
+    },
+    "fieldTeams": {
+      "icon": "👷",
+      "total": 30,
+      "available": 22,
+      "label": "Field Teams",
+      "color": "#ab47bc"
+    },
+    "drones": {
+      "icon": "📡",
+      "total": 10,
+      "available": 10,
+      "label": "Survey Drones",
+      "color": "#78909c"
+    }
+  },
+  "activeScenario": null,
+  "weather": {
+    "temp": 30,
+    "condition": "Clouds",
+    "humidity": 51,
+    "wind": 2.06
+  },
+  "aiCommander": {
+    "summary": "Awaiting operational signals to perform real-time urban disaster assessment...",
+    "actions": [
+      "Standby for signal intelligence processing"
+    ],
+    "escalationPrediction": "No active threats detected. Risk level: Nominal.",
+    "confidence": 1,
+    "forecast": "System monitoring: Hayatabad, University Town, Saddar, Karkhano, G.T. Road, Charsadda."
+  }
+}

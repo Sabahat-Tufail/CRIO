@@ -1,0 +1,302 @@
+/* CIRO Mobile - Full Mobile Experience */
+/* Activated at max-width: 768px */
+
+@media (max-width: 768px) {
+
+  /* ===== APP LAYOUT ===== */
+  .app { height: 100vh; height: 100dvh; }
+
+  /* ===== COMMAND BAR ===== */
+  .command-bar {
+    height: 50px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .logo { gap: 6px; }
+  .logo-icon { font-size: 18px; }
+  .logo-text { display: none; }
+  .logo-badge { font-size: 8px; padding: 1px 5px; }
+  .command-bar-center { display: none; }
+  .system-status { display: none; }
+  .btn-text { display: none; }
+  .btn-scenario {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  .btn-scenario .btn-icon { font-size: 16px; }
+  .btn-icon-only { font-size: 18px; padding: 8px; }
+  .notification-badge { top: 2px; right: 2px; }
+
+  /* ===== MOBILE STATUS BAR (replaces command-bar-center) ===== */
+  .mobile-status-bar {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+  .mobile-threat {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(76,175,80,0.15);
+    color: #4caf50;
+  }
+  .mobile-threat.threat-high, .mobile-threat.threat-critical {
+    background: rgba(255,61,87,0.15);
+    color: #ff3d57;
+  }
+  .mobile-threat.threat-moderate {
+    background: rgba(255,167,38,0.15);
+    color: #ffa726;
+  }
+  .mobile-crises-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(99,102,241,0.15);
+    color: #6366f1;
+  }
+
+  /* ===== DASHBOARD - FULL SCREEN VIEWS ===== */
+  .dashboard {
+    display: block;
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* All panels become full-screen overlays */
+  .panel-left,
+  .panel-right,
+  .panel-center {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px)); /* Safe area space for mobile nav */
+    max-height: none;
+    border: none;
+    z-index: 10;
+    display: none;
+    background: var(--bg-primary); /* Ensure background is solid */
+  }
+
+  /* Active view */
+  .panel-left.mobile-active,
+  .panel-right.mobile-active,
+  .panel-center.mobile-active {
+    display: flex;
+  }
+
+  /* Map is default view */
+  .panel-center { display: flex; z-index: 5; }
+
+  /* ===== MAP MOBILE ===== */
+  .map-container { flex: 1; }
+  .map { height: 100% !important; }
+  .map-overlay-controls { bottom: 8px; left: 8px; right: 8px; }
+  .map-legend {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 6px 10px;
+    font-size: 10px;
+    justify-content: center;
+  }
+  .map-info-card {
+    top: 8px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
+
+  /* ===== STATS BAR MOBILE ===== */
+  .stats-bar {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    background: var(--bg-primary);
+  }
+  .stat-card {
+    flex: 1 1 33%;
+    min-width: 0;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+  .stat-icon { font-size: 14px; }
+  .stat-value { font-size: 14px; }
+  .stat-label { font-size: 8px; letter-spacing: 0.3px; }
+
+  /* ===== PANELS MOBILE ===== */
+  .panel-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg-primary);
+  }
+  .panel-tab { padding: 14px 12px; font-size: 13px; }
+  .tab-icon { font-size: 16px; }
+
+  /* ===== SIGNAL FEED MOBILE ===== */
+  .feed-controls { padding: 10px 12px; }
+  .feed-filter { gap: 6px; }
+  .filter-chip { padding: 6px 12px; font-size: 12px; border-radius: 16px; }
+  .signal-card { padding: 12px; margin-bottom: 8px; border-radius: 10px; }
+  .signal-source { font-size: 12px; }
+  .signal-body { font-size: 13px; line-height: 1.6; }
+  .signal-time { font-size: 11px; }
+  .signal-meta { gap: 6px; }
+  .signal-tag { font-size: 11px; padding: 3px 8px; }
+
+  /* ===== CRISIS LIST MOBILE ===== */
+  .crisis-card { padding: 14px; margin-bottom: 10px; border-radius: 12px; }
+  .crisis-title { font-size: 14px; flex-wrap: wrap; gap: 6px; }
+  .crisis-type-badge { font-size: 11px; }
+  .crisis-stats { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .crisis-stat { font-size: 12px; }
+  .crisis-actions { gap: 8px; margin-top: 10px; }
+  .crisis-btn { padding: 8px 14px; font-size: 12px; border-radius: 8px; }
+
+  /* ===== RESOURCES MOBILE ===== */
+  .resource-chart-container { height: 150px; padding: 10px; }
+  .resource-chart-legend { grid-template-columns: 1fr 1fr; gap: 4px 10px; padding: 8px 12px; }
+  .chart-legend-item { padding: 5px 6px; font-size: 12px; }
+  .chart-legend-label { font-size: 11px; }
+  .chart-legend-value { font-size: 12px; }
+  .resource-item { padding: 12px; }
+  .resource-icon { font-size: 22px; }
+  .resource-name { font-size: 13px; }
+  .resource-detail { font-size: 12px; }
+  .resource-bar { width: 80px; }
+
+  /* ===== AGENT TRACES MOBILE ===== */
+  .agent-status-grid { grid-template-columns: 1fr 1fr; gap: 6px; padding: 10px; }
+  .agent-chip { padding: 8px 10px; font-size: 12px; border-radius: 10px; }
+  .trace-entry { padding: 10px 14px; font-size: 13px; margin-left: 12px; }
+  .trace-agent { font-size: 12px; }
+  .trace-msg { font-size: 12px; line-height: 1.6; }
+  .trace-time { font-size: 11px; }
+
+  /* ===== SIMULATION MOBILE ===== */
+  .sim-card { padding: 14px; border-radius: 10px; }
+  .sim-title { font-size: 14px; }
+  .sim-grid { grid-template-columns: 1fr; gap: 6px; }
+  .sim-arrow { text-align: center; transform: rotate(90deg); }
+  .sim-before, .sim-after { padding: 10px; font-size: 13px; }
+  .sim-effect { font-size: 12px; padding: 4px 0; }
+
+  /* ===== MODALS - FULL SCREEN ===== */
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    height: 100dvh;
+    max-height: 100%;
+    border-radius: 0;
+    border: none;
+  }
+  .modal-header { padding: 14px 16px; }
+  .modal-header h2 { font-size: 15px; }
+  .modal-close { padding: 12px; font-size: 20px; margin: -10px; }
+  .modal-body { padding: 16px; }
+  .scenario-grid { grid-template-columns: 1fr; gap: 10px; }
+  .scenario-card { padding: 16px; border-radius: 12px; }
+  .scenario-icon { font-size: 32px; }
+  .scenario-name { font-size: 16px; }
+  .scenario-desc { font-size: 13px; }
+  .scenario-tags { gap: 6px; }
+  .scenario-tag { font-size: 11px; padding: 3px 8px; }
+
+  /* Stakeholder modal */
+  .stakeholder-msg { padding: 14px; border-radius: 10px; margin-bottom: 10px; }
+  .stakeholder-name { font-size: 14px; }
+  .stakeholder-body { font-size: 13px; }
+
+  /* Crisis detail modal */
+  .detail-grid { grid-template-columns: 1fr; gap: 10px; }
+  .detail-section { padding: 14px; border-radius: 10px; }
+  .detail-row { font-size: 13px; padding: 4px 0; }
+  .detail-full { grid-column: 1; }
+
+  /* ===== NOTIFICATION PANEL ===== */
+  .side-panel {
+    top: 50px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+  .notif-item { padding: 12px; font-size: 12px; }
+
+  /* ===== TOASTS ===== */
+  .toast-container { top: 56px; right: 8px; left: 8px; }
+  .toast { max-width: 100%; font-size: 13px; }
+
+  /* ===== BOTTOM NAV ===== */
+  .mobile-nav {
+    display: flex !important;
+    height: 60px;
+    padding: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: linear-gradient(180deg, rgba(17,24,39,0.98), rgba(10,14,26,1));
+    backdrop-filter: blur(20px);
+    box-shadow: 0 -2px 20px rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .mobile-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 4px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: 10px;
+    transition: all 0.2s;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-nav-item.active {
+    color: #8b5cf6;
+  }
+  .mobile-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    border-radius: 0 0 2px 2px;
+  }
+  .nav-icon { font-size: 22px; line-height: 1; }
+  .nav-label { font-size: 10px; font-weight: 500; letter-spacing: 0.3px; }
+
+  /* ===== EMPTY STATES ===== */
+  .empty-state { padding: 60px 20px; }
+  .empty-icon { font-size: 42px; }
+  .empty-state p { font-size: 14px; }
+
+  /* ===== LOADING SCREEN ===== */
+  .loading-title { font-size: 28px; }
+  .loading-subtitle { font-size: 11px; }
+  .loading-rings { width: 100px; height: 100px; }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+  .stat-card { flex: 1 1 50%; }
+  .resource-chart-legend { grid-template-columns: 1fr; }
+  .agent-status-grid { grid-template-columns: 1fr; }
+  .crisis-stats { grid-template-columns: 1fr; }
+}
